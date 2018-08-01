@@ -13,13 +13,11 @@ public class Recipe implements Parcelable {
     private Integer servings;
     private String image;
     private List<Ingredient> ingredients = null;
-    private List<RecipeStep> recipeSteps = null;
+    private List<Step> steps = null;
 
     protected Recipe(Parcel in) {
         id = in.readByte() == 0x00 ? null : in.readInt();
         name = in.readString();
-        servings = in.readByte() == 0x00 ? null : in.readInt();
-        image = in.readString();
         if (in.readByte() == 0x01) {
             ingredients = new ArrayList<>();
             in.readList(ingredients, Ingredient.class.getClassLoader());
@@ -27,11 +25,13 @@ public class Recipe implements Parcelable {
             ingredients = null;
         }
         if (in.readByte() == 0x01) {
-            recipeSteps = new ArrayList<>();
-            in.readList(recipeSteps, RecipeStep.class.getClassLoader());
+            steps = new ArrayList<>();
+            in.readList(steps, Step.class.getClassLoader());
         } else {
-            recipeSteps = null;
+            steps = null;
         }
+        servings = in.readByte() == 0x00 ? null : in.readInt();
+        image = in.readString();
     }
 
     public Integer getId() {
@@ -52,11 +52,11 @@ public class Recipe implements Parcelable {
 
     public List<Ingredient> getIngredients() {return ingredients;}
 
-    //public void setIngredients(List<Ingredient> ingredients) {this.ingredients = ingredients;}
+    public void setIngredients(List<Ingredient> ingredients) {this.ingredients = ingredients;}
 
-    public List<RecipeStep> getRecipeSteps() {return recipeSteps;}
+    public List<Step> getSteps() {return steps;}
 
-    //public void setSteps(List<RecipeStep> recipeSteps) {this.recipeSteps = recipeSteps;}
+    public void setSteps(List<Step> steps) {this.steps = steps;}
 
     public Integer getServings() {
         return servings;
@@ -88,6 +88,18 @@ public class Recipe implements Parcelable {
             parcel.writeInt(id);
         }
         parcel.writeString(name);
+        if (ingredients == null) {
+            parcel.writeByte((byte) (0x00));
+        } else {
+            parcel.writeByte((byte) (0x01));
+            parcel.writeList(ingredients);
+        }
+        if (steps == null) {
+            parcel.writeByte((byte) (0x00));
+        } else {
+            parcel.writeByte((byte) (0x01));
+            parcel.writeList(steps);
+        }
         if (servings == null) {
             parcel.writeByte((byte) (0x00));
         } else {
@@ -95,18 +107,6 @@ public class Recipe implements Parcelable {
             parcel.writeInt(servings);
         }
         parcel.writeString(image);
-        if (ingredients == null) {
-            parcel.writeByte((byte) (0x00));
-        } else {
-            parcel.writeByte((byte) (0x01));
-            parcel.writeList(ingredients);
-        }
-        if (recipeSteps == null) {
-            parcel.writeByte((byte) (0x00));
-        } else {
-            parcel.writeByte((byte) (0x01));
-            parcel.writeList(recipeSteps);
-        }
 
     }
 

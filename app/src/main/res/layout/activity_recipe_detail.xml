@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/recipe_layout"
+    android:id="@+id/recipe_detail_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:gravity="center_horizontal">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
+        android:id="@+id/recipeToolbar"
         style="@style/ThemeToolbar"
         layout="@layout/toolbar_layout"
         android:layout_width="match_parent"
@@ -17,11 +17,9 @@
         app:theme="@style/ToolBarStyle"
         />
 
-    <fragment
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/recipe_fragment_body_part"
-        android:name="bakingapp.sm.com.bakingapp.userInterface.RecipeFragment"
+    <FrameLayout
+        android:id="@+id/recipe_fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
+        android:scaleType="centerInside"
+        android:layout_height="wrap_content" />
 </LinearLayout>

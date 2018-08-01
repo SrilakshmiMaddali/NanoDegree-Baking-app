@@ -3,7 +3,7 @@ package bakingapp.sm.com.bakingapp;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class RecipeStep implements Parcelable {
+public class Step implements Parcelable {
 
     private Integer id;
     private String videoURL;
@@ -51,7 +51,7 @@ public class RecipeStep implements Parcelable {
         this.description = description;
     }
 
-    protected RecipeStep(Parcel in) {
+    protected Step(Parcel in) {
         id = in.readByte() == 0x00 ? null : in.readInt();
         videoURL = in.readString();
         thumbnailURL = in.readString();
@@ -79,15 +79,15 @@ public class RecipeStep implements Parcelable {
     }
 
     @SuppressWarnings("unused")
-    public static final Parcelable.Creator<RecipeStep> CREATOR = new Parcelable.Creator<RecipeStep>() {
+    public static final Parcelable.Creator<Step> CREATOR = new Parcelable.Creator<Step>() {
         @Override
-        public RecipeStep createFromParcel(Parcel in) {
-            return new RecipeStep(in);
+        public Step createFromParcel(Parcel in) {
+            return new Step(in);
         }
 
         @Override
-        public RecipeStep[] newArray(int size) {
-            return new RecipeStep[size];
+        public Step[] newArray(int size) {
+            return new Step[size];
         }
     };
 }

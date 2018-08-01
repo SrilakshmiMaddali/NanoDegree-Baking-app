@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:fitsSystemWindows="true"
+        android:padding="16dp">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbarStyle="insideInset"
+            android:clipToPadding="false"
+            android:scrollIndicators="top|bottom"
+            android:scrollbarAlwaysDrawVerticalTrack="false"
+            android:isScrollContainer="false"
+            android:fillViewport="false">
+        <TextView
+            android:id="@+id/recipe_detail_ingredients_text"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_weight="1"
+            android:padding="15dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="16sp" />
+        </ScrollView>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recipe_detail_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:layout_weight="2" />
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>
